@@ -6,8 +6,15 @@ import classNames from 'classnames';
 import Image from 'next/image';
 
 const Home = () => {
-  const { letters, question, alfabeto, keyboard, gameReset, score, result } =
-    useHangman();
+  const {
+    letters,
+    question,
+    alphabetLetters,
+    keyboard,
+    gameReset,
+    score,
+    result
+  } = useHangman();
 
   return (
     <main className="flex flex-col items-center justify-center lg:h-screen">
@@ -29,12 +36,12 @@ const Home = () => {
                 <div
                   key={index}
                   className={classNames(
-                    `border px-2 bg-neutral-100 text-purple-600`,
+                    `border px-2 text-purple-600 md:px-3 lg:px-3`,
                     {
                       'bg-red-600 text-white/100': !result && score > 5
                     },
                     {
-                      'bg-green-600 text-white/100': result && score < 6
+                      'bg-green-600 text-white/100': result
                     }
                   )}
                 >
@@ -50,19 +57,19 @@ const Home = () => {
             </div>
 
             <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-9 lg:grid-cols-9 gap-2 justify-center">
-              {alfabeto.map((alfabeto, index) => (
+              {alphabetLetters.map((alphabet, index) => (
                 <button
                   key={index}
                   className={classNames(
                     `flex items-center justify-center shadow-md border font-semibold text-white w-14 h-14 bg-purple-600 rounded-md hover:scale-95`,
-                    { 'bg-slate-600 cursor-not-allowed': alfabeto.disabled }
+                    { 'bg-slate-600 cursor-not-allowed': alphabet.disabled }
                   )}
                   onClick={() => {
-                    keyboard(alfabeto.letter);
+                    keyboard(alphabet.letter);
                   }}
-                  disabled={alfabeto.disabled}
+                  disabled={alphabet.disabled}
                 >
-                  {alfabeto.letter}
+                  {alphabet.letter}
                 </button>
               ))}
             </div>

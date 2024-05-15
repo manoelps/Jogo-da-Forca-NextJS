@@ -118,7 +118,7 @@ const useHangman = () => {
   return {
     letters,
     question,
-    alfabeto: alphabetLetters,
+    alphabetLetters,
     keyboard,
     gameReset,
     score,
