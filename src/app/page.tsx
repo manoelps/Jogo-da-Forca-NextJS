@@ -74,8 +74,7 @@ const Home = () => {
         <button
           onClick={gameReset}
           className={classNames(
-            'px-8 py-3 lg:px-6 lg:py-2  md:px-6 md:py-2 bg-blue-600 text-white font-semibold rounded-md shadow',
-            { 'bg-gray-400 cursor-not-allowed': !true }
+            'px-8 py-3 lg:px-6 lg:py-2  md:px-6 md:py-2 bg-purple-600/70 text-white font-semibold rounded-md shadow hover:scale-95'
           )}
         >
           PRÓXIMO DESAFIO
