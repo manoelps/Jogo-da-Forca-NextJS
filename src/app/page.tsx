@@ -31,10 +31,10 @@ const Home = () => {
                   className={classNames(
                     `border px-2 bg-neutral-100 text-purple-600`,
                     {
-                      'bg-red-600/100 text-white/100': !result && score > 5
+                      'bg-red-600 text-white/100': !result && score > 5
                     },
                     {
-                      'bg-green-600/100 text-white/100': result && score < 6
+                      'bg-green-600 text-white/100': result && score < 6
                     }
                   )}
                 >
