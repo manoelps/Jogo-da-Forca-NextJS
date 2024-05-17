@@ -74,7 +74,7 @@ const Home = () => {
                   </button>
                 ))}
               </div>
-              <div className="w-full flex items-center justify-end bottom-1 absolute lg:hidden md:hidden">
+              <div className="flex items-center justify-end right-0 bottom-1 absolute lg:hidden md:hidden">
                 <button
                   onClick={gameReset}
                   className={classNames(
