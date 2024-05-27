@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 const useHangman = () => {
   const [question, setQuestion] = useState<QuestionProps>();
   const [letters, setLetters] = useState<LetterProps[]>([]);
-  const [alphabetLetters, setAlfabeto] = useState<AlfabetoProps[]>(alphabet);
+  const [alphabetLetters, setAlphabet] = useState<AlfabetoProps[]>(alphabet);
   const [score, setScore] = useState<number>(0);
   const [result, setResult] = useState<boolean | null>(null);
 
@@ -25,7 +25,7 @@ const useHangman = () => {
       return { ...keyboard, disabled: false };
     });
 
-    setAlfabeto(resetKeyboard);
+    setAlphabet(resetKeyboard);
   };
 
   //pesquisa a letra escolhida
@@ -33,6 +33,7 @@ const useHangman = () => {
     const foundLetter = letters.find(element => element.letter === letter);
     if (!foundLetter) {
       setScore(prevScore => prevScore + 1);
+      gameOver();
     }
   };
 
@@ -46,7 +47,6 @@ const useHangman = () => {
     });
 
     setLetters(viewWord);
-
     const newAlphabet = alphabetLetters.map((keyboard: AlfabetoProps) => {
       if (keyboard.letter === letter) {
         return { ...keyboard, disabled: true };
@@ -54,13 +54,14 @@ const useHangman = () => {
       return keyboard;
     });
 
-    setAlfabeto(newAlphabet);
+    setAlphabet(newAlphabet);
     checkLetterInResponse(letter);
+    checkWin(viewWord);
   };
 
   //GAME OVER
-  const disableKeyboard = () => {
-    if (score > 5) {
+  const gameOver = () => {
+    if (score >= 5) {
       const message = [
         {
           pista: '',
@@ -73,47 +74,35 @@ const useHangman = () => {
         }
       );
       setLetters(viewWord);
+      disableKeyboard();
 
-      const disabledKeyboard = alphabetLetters.map(
-        (keyboard: AlfabetoProps) => {
-          return { ...keyboard, disabled: true };
-        }
-      );
-
-      setAlfabeto(disabledKeyboard);
       setResult(false);
     }
   };
 
-  useEffect(() => {
-    selectRandomQuestion(questions);
-  }, []);
+  const disableKeyboard = () => {
+    const disabledKeyboard = alphabetLetters.map((keyboard: AlfabetoProps) => {
+      return { ...keyboard, disabled: true };
+    });
 
-  useEffect(() => {
-    disableKeyboard();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [score]);
+    setAlphabet(disabledKeyboard);
+  };
 
-  useEffect(() => {
-    const findAllLetter = letters.filter(
+  const checkWin = (viewWord: LetterProps[]) => {
+    const findAllLetter = viewWord.filter(
       item => item.visibility === true
     ).length;
 
     if (findAllLetter === letters.length && letters.length > 0 && score < 6) {
       //   console.log('PARABENS');
       setResult(true);
-
-      const disabledKeyboard = alphabetLetters.map(
-        (keyboard: AlfabetoProps) => {
-          return { ...keyboard, disabled: true };
-        }
-      );
-
-      setAlfabeto(disabledKeyboard);
+      disableKeyboard();
     }
+  };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [letters]);
+  useEffect(() => {
+    selectRandomQuestion(questions);
+  }, []);
 
   return {
     letters,
