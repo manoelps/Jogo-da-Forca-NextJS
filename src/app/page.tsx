@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <main className="flex flex-col items-center justify-center lg:h-screen">
-      <div className="flex flex-col items-center justify-center p-4 w-full bg-white rounded-md shadow shadow-neutral-800 lg:w-auto">
+      <div className="flex flex-col items-center justify-center p-4 w-full bg-white rounded-md lg:shadow lg:w-auto">
         <div className="flex flex-col lg:grid lg:grid-cols-2">
           <div className="flex items-center justify-center">
             <Image
@@ -31,7 +31,7 @@ const Home = () => {
             />
           </div>
           <div className="flex flex-col items-center justify-center gap-4 pt-4 w-full">
-            <div className="flex justify-center flex-wrap gap-2 font-bold text-2xl text-white w-full">
+            <div className="flex justify-center flex-wrap gap-1 font-bold text-2xl text-white w-full">
               {letters.map((letra, index) => (
                 <div
                   key={index}
