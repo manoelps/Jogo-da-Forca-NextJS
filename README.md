@@ -1,6 +1,6 @@
 # Jogo-da-Forca-NextJS
 
-Jogo da Forca, utilizando [Next.js](https://nextjs.org/)
+Jogo da Forca, utilizando [Next.js](https://nextjs.org/) versão 14.2.3
 
 ## Getting Started
 
@@ -20,4 +20,4 @@ Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o
 
 ##
 
-![alt text](image.png)
+![alt text](images-git/image.png)
