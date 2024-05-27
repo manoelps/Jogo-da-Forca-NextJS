@@ -56,7 +56,7 @@ const useHangman = () => {
 
     setAlphabet(newAlphabet);
     checkLetterInResponse(letter);
-    checkWin(viewWord);
+    checkVictory(viewWord);
   };
 
   //GAME OVER
@@ -88,7 +88,7 @@ const useHangman = () => {
     setAlphabet(disabledKeyboard);
   };
 
-  const checkWin = (viewWord: LetterProps[]) => {
+  const checkVictory = (viewWord: LetterProps[]) => {
     const findAllLetter = viewWord.filter(
       item => item.visibility === true
     ).length;
